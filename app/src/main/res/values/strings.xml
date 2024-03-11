@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">RickAndMortyAPI</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_error">Ops, algo de errado aconteceu...</string>
+</resources>

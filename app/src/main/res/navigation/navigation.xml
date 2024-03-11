@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/characterFragment">
+
+    <fragment
+        android:id="@+id/characterFragment"
+        android:name="com.example.rickandmortyapi.ui.listcharacters.CharacterFragment"
+        android:label="fragment_character"
+        tools:layout="@layout/fragment_character" >
+        <action
+            android:id="@+id/action_characterFragment_to_characterInfoFragment"
+            app:destination="@id/characterInfoFragment"
+            app:enterAnim="@android:anim/fade_in"/>
+        <argument
+            android:name="characterInfo"
+            app:argType="com.example.rickandmortyapi.domain.model.ResultDomain"
+            />
+        <action
+            android:id="@+id/action_characterFragment_to_errorFragment"
+            app:destination="@id/errorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterInfoFragment"
+        android:name="com.example.rickandmortyapi.ui.charactersdetails.CharacterInfoFragment"
+        android:label="CharacterInfoFragment" >
+        <action
+            android:id="@+id/action_characterInfoFragment_to_characterFragment"
+            app:destination="@id/characterFragment"
+            app:enterAnim="@android:anim/slide_in_left"/>
+    </fragment>
+    <fragment
+        android:id="@+id/errorFragment"
+        android:name="com.example.rickandmortyapi.ui.error.ErrorFragment"
+        android:label="ErrorFragment" >
+        <action
+            android:id="@+id/action_errorFragment_to_characterFragment"
+            app:destination="@id/characterFragment" />
+    </fragment>
+</navigation>
