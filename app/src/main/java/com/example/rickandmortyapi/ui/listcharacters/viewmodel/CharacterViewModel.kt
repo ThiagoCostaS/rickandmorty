@@ -7,10 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.rickandmortyapi.core.runCatching
 import com.example.rickandmortyapi.data.useCases.GetAllCharactersUseCase
 import com.example.rickandmortyapi.domain.model.CharacterDomain
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CharacterViewModel(private val getAllCharacters: GetAllCharactersUseCase) : ViewModel() {
+class CharacterViewModel(
+    private val getAllCharacters: GetAllCharactersUseCase,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+) : ViewModel() {
 
     private val _viewState = MutableLiveData<CharacterViewState?>()
     val viewState: LiveData<CharacterViewState?> = _viewState
@@ -30,7 +34,7 @@ class CharacterViewModel(private val getAllCharacters: GetAllCharactersUseCase) 
         }
     }
 
-    private fun loadAllCharacters(isFirstPage: Boolean = true) = viewModelScope.launch {
+    private fun loadAllCharacters(isFirstPage: Boolean = true) = viewModelScope.launch(dispatcher) {
 
         _viewState.postValue(CharacterViewState.Loading)
 
@@ -40,7 +44,7 @@ class CharacterViewModel(private val getAllCharacters: GetAllCharactersUseCase) 
                 getAllCharacters(currentPage)
             },
             onFailure = {
-                _viewState.postValue(CharacterViewState.Error)
+                _viewState.postValue(CharacterViewState.Error(it.message))
             },
             onSuccess = {
                 if (isFirstPage) {

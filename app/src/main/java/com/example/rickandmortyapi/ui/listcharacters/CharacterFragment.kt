@@ -51,12 +51,13 @@ class CharacterFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.viewState.observe(viewLifecycleOwner) { viewState ->
                 when (viewState) {
-                    CharacterViewState.Error -> goToScreenError()
+                    is CharacterViewState.Error -> {
+                        goToScreenError()
+                    }
                     CharacterViewState.Loading -> showLoading(isLoading = true)
                     is CharacterViewState.ShowCharacters -> {
                         showLoading(isLoading = false)
                         handleListCharacters(viewState.character)
-
                     }
 
                     is CharacterViewState.SetNextCharacterPage -> {

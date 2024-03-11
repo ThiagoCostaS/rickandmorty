@@ -10,5 +10,5 @@ sealed class CharacterViewState() {
 
     class SetNextCharacterPage(val character: CharacterDomain): CharacterViewState()
 
-    data object Error: CharacterViewState()
+    class Error(val message: String?): CharacterViewState()
 }
