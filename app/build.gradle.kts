@@ -52,7 +52,7 @@ dependencies {
     //RETROFIT
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     //IMAGE CONSUMER
-    implementation("com.github.bumptech.glide:glide:4.13.2")
+    implementation("com.github.bumptech.glide:glide:4.15.1")
     implementation("org.jetbrains.kotlin:kotlin-test:1.8.22")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
